@@ -7,7 +7,7 @@ import { ImageWithFallback } from "./figma/ImageWithFallback";
 interface ResourceCardProps {
   title: string;
   description: string;
-  category: "提示词" | "MCP" | "Dify工具" | "工作流";
+  category: "提示词" | "MCP" | "Dify工作流";
   rating: number;
   downloads: number;
   views: number;
@@ -33,8 +33,7 @@ export function ResourceCard({
     switch (cat) {
       case "提示词": return "bg-blue-100 text-blue-800";
       case "MCP": return "bg-green-100 text-green-800";
-      case "Dify工具": return "bg-purple-100 text-purple-800";
-      case "工作流": return "bg-orange-100 text-orange-800";
+      case "Dify工作流": return "bg-purple-100 text-purple-800";
       default: return "bg-gray-100 text-gray-800";
     }
   };

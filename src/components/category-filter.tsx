@@ -10,8 +10,7 @@ const categories = [
   { id: "all", label: "全部", count: 1247 },
   { id: "prompt", label: "提示词", count: 856 },
   { id: "mcp", label: "MCP", count: 203 },
-  { id: "dify", label: "Dify工具", count: 124 },
-  { id: "workflow", label: "工作流", count: 64 },
+  { id: "dify", label: "Dify工作流", count: 188 },
 ];
 
 export function CategoryFilter({ activeCategory, onCategoryChange }: CategoryFilterProps) {
