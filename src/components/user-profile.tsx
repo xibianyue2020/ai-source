@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { User, Trophy, Star, Upload, MessageCircle, Calendar, Award, Target, Zap, Crown } from "lucide-react";
+import { User, Trophy, Star, Upload, MessageCircle, Calendar, Award, Target, Zap, Crown, FileText, Tag, Link, X } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "./ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
 import { Badge } from "./ui/badge";
@@ -7,6 +7,10 @@ import { Progress } from "./ui/progress";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { Button } from "./ui/button";
 import { Separator } from "./ui/separator";
+import { Input } from "./ui/input";
+import { Textarea } from "./ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "./ui/select";
+import { Label } from "./ui/label";
 
 interface UserActivity {
   id: string;
@@ -174,8 +178,28 @@ const mockTasks: Task[] = [
   }
 ];
 
+interface ResourceUpload {
+  title: string;
+  description: string;
+  category: string;
+  tags: string[];
+  fileUrl: string;
+  file: File | null;
+}
+
 export function UserProfile() {
   const [activeTab, setActiveTab] = useState("overview");
+  const [showUploadModal, setShowUploadModal] = useState(false);
+  const [uploadForm, setUploadForm] = useState<ResourceUpload>({
+    title: "",
+    description: "",
+    category: "",
+    tags: [],
+    fileUrl: "",
+    file: null
+  });
+  const [tagInput, setTagInput] = useState("");
+  const [isUploading, setIsUploading] = useState(false);
 
   const getActivityIcon = (type: string) => {
     switch (type) {
@@ -220,6 +244,69 @@ export function UserProfile() {
       default:
         return "活动";
     }
+  };
+
+  const handleFileSelect = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0] || null;
+    setUploadForm(prev => ({ ...prev, file }));
+  };
+
+  const addTag = () => {
+    if (tagInput.trim() && !uploadForm.tags.includes(tagInput.trim())) {
+      setUploadForm(prev => ({ 
+        ...prev, 
+        tags: [...prev.tags, tagInput.trim()] 
+      }));
+      setTagInput("");
+    }
+  };
+
+  const removeTag = (tagToRemove: string) => {
+    setUploadForm(prev => ({ 
+      ...prev, 
+      tags: prev.tags.filter(tag => tag !== tagToRemove) 
+    }));
+  };
+
+  const handleSubmitUpload = async () => {
+    if (!uploadForm.title || !uploadForm.description || !uploadForm.category) {
+      alert("请填写所有必填字段");
+      return;
+    }
+
+    setIsUploading(true);
+    
+    // 模拟上传过程
+    setTimeout(() => {
+      // 添加新的活动记录
+      const newActivity: UserActivity = {
+        id: Date.now().toString(),
+        type: "upload",
+        title: `上传了新的${uploadForm.category}`,
+        description: uploadForm.title,
+        date: new Date().toISOString().split('T')[0],
+        points: 50
+      };
+      
+      mockActivities.unshift(newActivity);
+      mockUser.stats.resourcesUploaded += 1;
+      mockUser.points += 50;
+      
+      // 重置表单
+      setUploadForm({
+        title: "",
+        description: "",
+        category: "",
+        tags: [],
+        fileUrl: "",
+        file: null
+      });
+      setTagInput("");
+      setIsUploading(false);
+      setShowUploadModal(false);
+      
+      alert("资源上传成功！获得50积分奖励！");
+    }, 2000);
   };
 
   return (
@@ -271,6 +358,17 @@ export function UserProfile() {
                   <span>加入于 {mockUser.joinDate}</span>
                 </div>
               </div>
+              
+              <div className="flex space-x-3 mt-4">
+                <Button onClick={() => setShowUploadModal(true)}>
+                  <Upload className="h-4 w-4 mr-2" />
+                  上传资源
+                </Button>
+                <Button variant="outline">
+                  <Zap className="h-4 w-4 mr-2" />
+                  查看等级奖励
+                </Button>
+              </div>
             </div>
           </div>
         </CardContent>
@@ -278,8 +376,9 @@ export function UserProfile() {
 
       {/* Main Content Tabs */}
       <Tabs value={activeTab} onValueChange={setActiveTab} className="w-full">
-        <TabsList className="grid w-full grid-cols-4">
+        <TabsList className="grid w-full grid-cols-5">
           <TabsTrigger value="overview">概览</TabsTrigger>
+          <TabsTrigger value="upload">上传资源</TabsTrigger>
           <TabsTrigger value="activities">贡献历史</TabsTrigger>
           <TabsTrigger value="achievements">成就徽章</TabsTrigger>
           <TabsTrigger value="tasks">任务挑战</TabsTrigger>
@@ -363,7 +462,7 @@ export function UserProfile() {
                     </div>
                     <div className="flex-1 min-w-0">
                       <div className="flex items-center space-x-2 mb-1">
-                        <Badge className={getActivityColor(activity.type)} variant="secondary" className="text-xs">
+                        <Badge className={`${getActivityColor(activity.type)} text-xs`} variant="secondary">
                           {getActivityText(activity.type)}
                         </Badge>
                         <span className="text-xs text-muted-foreground">{activity.date}</span>
@@ -376,6 +475,83 @@ export function UserProfile() {
                     </div>
                   </div>
                 ))}
+              </div>
+            </CardContent>
+          </Card>
+        </TabsContent>
+
+        <TabsContent value="upload" className="space-y-6">
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center space-x-2">
+                <Upload className="h-5 w-5" />
+                <span>上传新资源</span>
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="text-center py-8">
+                <div className="mx-auto w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center mb-4">
+                  <Upload className="h-6 w-6 text-primary" />
+                </div>
+                <h3 className="text-lg font-semibold mb-2">分享您的资源</h3>
+                <p className="text-muted-foreground mb-6">
+                  上传高质量的AI资源，帮助社区成员提升效率，获得积分奖励
+                </p>
+                <Button size="lg" onClick={() => setShowUploadModal(true)}>
+                  <Upload className="h-4 w-4 mr-2" />
+                  开始上传
+                </Button>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h4 className="font-medium mb-4">上传指南</h4>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="text-center p-4 bg-muted rounded-lg">
+                    <FileText className="h-8 w-8 mx-auto mb-2 text-primary" />
+                    <h5 className="font-medium mb-1">高质量内容</h5>
+                    <p className="text-sm text-muted-foreground">
+                      确保资源内容准确、完整，具有良好的实用性
+                    </p>
+                  </div>
+                  <div className="text-center p-4 bg-muted rounded-lg">
+                    <Tag className="h-8 w-8 mx-auto mb-2 text-primary" />
+                    <h5 className="font-medium mb-1">准确分类</h5>
+                    <p className="text-sm text-muted-foreground">
+                      选择合适的分类和标签，方便其他用户查找
+                    </p>
+                  </div>
+                  <div className="text-center p-4 bg-muted rounded-lg">
+                    <Trophy className="h-8 w-8 mx-auto mb-2 text-primary" />
+                    <h5 className="font-medium mb-1">获得奖励</h5>
+                    <p className="text-sm text-muted-foreground">
+                      每次成功上传可获得50积分，提升用户等级
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <Separator />
+
+              <div>
+                <h4 className="font-medium mb-4">最近上传</h4>
+                <div className="space-y-3">
+                  {mockActivities.filter(activity => activity.type === "upload").slice(0, 3).map((activity) => (
+                    <div key={activity.id} className="flex items-center space-x-3 p-3 bg-muted rounded-lg">
+                      <div className="mt-1">
+                        {getActivityIcon(activity.type)}
+                      </div>
+                      <div className="flex-1">
+                        <p className="text-sm font-medium">{activity.title}</p>
+                        <p className="text-xs text-muted-foreground">{activity.description}</p>
+                      </div>
+                      <Badge variant="outline" className="text-xs">
+                        +{activity.points}
+                      </Badge>
+                    </div>
+                  ))}
+                </div>
               </div>
             </CardContent>
           </Card>
@@ -531,6 +707,167 @@ export function UserProfile() {
           </Card>
         </TabsContent>
       </Tabs>
+
+      {/* Upload Modal */}
+      {showUploadModal && (
+        <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
+          <Card className="w-full max-w-2xl max-h-[90vh] overflow-y-auto">
+            <CardHeader>
+              <div className="flex items-center justify-between">
+                <CardTitle className="flex items-center space-x-2">
+                  <Upload className="h-5 w-5" />
+                  <span>上传资源</span>
+                </CardTitle>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  onClick={() => setShowUploadModal(false)}
+                >
+                  <X className="h-4 w-4" />
+                </Button>
+              </div>
+            </CardHeader>
+            <CardContent className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label htmlFor="title">资源标题 *</Label>
+                  <Input
+                    id="title"
+                    placeholder="请输入资源标题"
+                    value={uploadForm.title}
+                    onChange={(e) => setUploadForm(prev => ({ ...prev, title: e.target.value }))}
+                  />
+                </div>
+                
+                <div className="space-y-2">
+                  <Label htmlFor="category">资源分类 *</Label>
+                  <Select
+                    value={uploadForm.category}
+                    onValueChange={(value) => setUploadForm(prev => ({ ...prev, category: value }))}
+                  >
+                    <SelectTrigger id="category">
+                      <SelectValue placeholder="选择分类" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="提示词">提示词</SelectItem>
+                      <SelectItem value="MCP">MCP</SelectItem>
+                      <SelectItem value="Dify工作流">Dify工作流</SelectItem>
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="description">资源描述 *</Label>
+                <Textarea
+                  id="description"
+                  placeholder="请详细描述您的资源..."
+                  rows={4}
+                  value={uploadForm.description}
+                  onChange={(e) => setUploadForm(prev => ({ ...prev, description: e.target.value }))}
+                />
+              </div>
+
+              <div className="space-y-2">
+                <Label>标签</Label>
+                <div className="flex space-x-2">
+                  <Input
+                    placeholder="添加标签"
+                    value={tagInput}
+                    onChange={(e) => setTagInput(e.target.value)}
+                    onKeyPress={(e) => {
+                      if (e.key === 'Enter') {
+                        e.preventDefault();
+                        addTag();
+                      }
+                    }}
+                  />
+                  <Button type="button" onClick={addTag} size="icon">
+                    <Tag className="h-4 w-4" />
+                  </Button>
+                </div>
+                <div className="flex flex-wrap gap-2 mt-2">
+                  {uploadForm.tags.map((tag, index) => (
+                    <Badge key={index} variant="secondary" className="flex items-center space-x-1">
+                      <span>{tag}</span>
+                      <Button
+                        variant="ghost"
+                        size="icon"
+                        className="h-4 w-4 p-0"
+                        onClick={() => removeTag(tag)}
+                      >
+                        <X className="h-3 w-3" />
+                      </Button>
+                    </Badge>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="file">上传文件</Label>
+                <div className="border-2 border-dashed border-input rounded-lg p-6 text-center">
+                  <Input
+                    id="file"
+                    type="file"
+                    className="hidden"
+                    onChange={handleFileSelect}
+                    accept=".json,.txt,.md,.py,.js,.ts,.yaml,.yml"
+                  />
+                  <label htmlFor="file" className="cursor-pointer">
+                    <FileText className="h-8 w-8 mx-auto mb-2 text-muted-foreground" />
+                    <p className="text-sm text-muted-foreground">
+                      {uploadForm.file ? uploadForm.file.name : "点击选择文件或拖拽文件到此处"}
+                    </p>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      支持 JSON, TXT, MD, PY, JS, TS, YAML 格式
+                    </p>
+                  </label>
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="fileUrl">外部链接（可选）</Label>
+                <div className="relative">
+                  <Link className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    id="fileUrl"
+                    placeholder="https://example.com/resource"
+                    className="pl-10"
+                    value={uploadForm.fileUrl}
+                    onChange={(e) => setUploadForm(prev => ({ ...prev, fileUrl: e.target.value }))}
+                  />
+                </div>
+              </div>
+
+              <div className="flex justify-end space-x-3 pt-4">
+                <Button
+                  variant="outline"
+                  onClick={() => setShowUploadModal(false)}
+                  disabled={isUploading}
+                >
+                  取消
+                </Button>
+                <Button
+                  onClick={handleSubmitUpload}
+                  disabled={isUploading}
+                >
+                  {isUploading ? (
+                    <>
+                      <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                      上传中...
+                    </>
+                  ) : (
+                    <>
+                      <Upload className="h-4 w-4 mr-2" />
+                      确认上传
+                    </>
+                  )}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      )}
     </div>
   );
 }
