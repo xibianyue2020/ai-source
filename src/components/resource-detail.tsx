@@ -17,7 +17,7 @@ interface ResourceDetailProps {
     id: string;
     title: string;
     description: string;
-    category: "提示词" | "MCP" | "Dify工作流";
+    category: "提示词" | "MCP" | "Dify应用";
     rating: number;
     downloads: number;
     views: number;
@@ -84,7 +84,7 @@ export function ResourceDetail({ onBack, resource }: ResourceDetailProps) {
     switch (cat) {
       case "提示词": return "bg-blue-100 text-blue-800";
       case "MCP": return "bg-green-100 text-green-800";
-      case "Dify工作流": return "bg-purple-100 text-purple-800";
+      case "Dify应用": return "bg-purple-100 text-purple-800";
       default: return "bg-gray-100 text-gray-800";
     }
   };

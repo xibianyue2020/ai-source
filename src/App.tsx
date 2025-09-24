@@ -41,7 +41,7 @@ const mockResources = {
     {
       title: "Dify 客服机器人模板",
       description: "基于Dify平台的智能客服解决方案，支持多轮对话和知识库检索。",
-      category: "Dify工作流" as const,
+      category: "Dify应用" as const,
       rating: 4.7,
       downloads: 12560,
       views: 23450,
@@ -53,7 +53,7 @@ const mockResources = {
     {
       title: "代码审查工作流",
       description: "自动化代码审查流程，集成静态分析和AI代码建议，提升代码质量。",
-      category: "Dify工作流" as const,
+      category: "Dify应用" as const,
       rating: 4.6,
       downloads: 7830,
       views: 14920,
@@ -101,7 +101,7 @@ const mockResources = {
     {
       title: "智能邮件处理工作流",
       description: "基于AI的邮件自动分类和回复工作流，大幅提升邮件处理效率。",
-      category: "Dify工作流" as const,
+      category: "Dify应用" as const,
       rating: 4.4,
       downloads: 1890,
       views: 5420,

@@ -14,7 +14,7 @@ export function HeroSearch() {
         </div>
         
         <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto">
-          发现、分享和改进最优秀的 AI 提示词、MCP 工具、Dify 应用和自动化工作流
+          发现、分享和改进最优秀的 AI 提示词、MCP 工具、Dify 应用
         </p>
 
         <div className="relative max-w-2xl mx-auto">
