@@ -5,6 +5,9 @@ import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle }
 import { Badge } from './ui/badge';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { ImageWithFallback } from './figma/ImageWithFallback';
+import mcpImage from '../images/MCP.jpg';
+import aiImage from '../images/AI.jpg';
+import biImage from '../images/BI.jpg';
 
 interface HomePageProps {
   onResourceClick: (id: string) => void;
@@ -16,7 +19,7 @@ export function HomePage({ onResourceClick }: HomePageProps) {
       id: '1',
       title: 'React 组件库',
       description: '现代化的 React UI 组件库，支持 TypeScript，提供丰富的组件和主题定制功能。',
-      image: 'https://images.unsplash.com/photo-1599408443565-829a8dfd7e9a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb2Rlcm4lMjB0ZWNobm9sb2d5JTIwcmVzb3VyY2VzfGVufDF8fHx8MTc1ODY3NzU4Mnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: mcpImage,
       rating: 4.8,
       downloads: 15420,
       author: '张三',
@@ -26,7 +29,7 @@ export function HomePage({ onResourceClick }: HomePageProps) {
       id: '2',
       title: 'Vue3 后台管理系统',
       description: '基于 Vue3 + Vite 的现代化后台管理系统模板，集成了权限管理、数据可视化等功能。',
-      image: 'https://images.unsplash.com/photo-1700887944225-f148dd124305?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkaWdpdGFsJTIwdG9vbHMlMjBzb2Z0d2FyZXxlbnwxfHx8fDE3NTg2NzI0Mjl8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: aiImage,
       rating: 4.6,
       downloads: 8730,
       author: '李四',
@@ -36,7 +39,7 @@ export function HomePage({ onResourceClick }: HomePageProps) {
       id: '3',
       title: 'Node.js API 框架',
       description: '轻量级的 Node.js API 开发框架，支持 RESTful API 和 GraphQL，内置身份认证。',
-      image: 'https://images.unsplash.com/photo-1556792189-55769c8dfbac?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2RlJTIwZGV2ZWxvcG1lbnQlMjBwcm9ncmFtbWluZ3xlbnwxfHx8fDE3NTg2Nzc1ODZ8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral',
+      image: biImage,
       rating: 4.7,
       downloads: 12340,
       author: '王五',
