@@ -60,7 +60,7 @@ const mockRelatedResources = [
     views: 15680,
     tags: ["润色", "改进", "专业"],
     author: "写作专家",
-    image: "https://images.unsplash.com/photo-1738003946582-aabeabf5e009?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBSSUyMGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc1ODY2NzczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "/src/images/ai-technology.jpg"
   },
   {
     title: "文案创作助手",
@@ -71,7 +71,7 @@ const mockRelatedResources = [
     views: 12450,
     tags: ["营销", "文案", "创意"],
     author: "营销达人",
-    image: "https://images.unsplash.com/photo-1753715613388-7e03410b1dce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjBwcm9ncmFtbWluZyUyMHdvcmtmbG93fGVufDF8fHx8MTc1ODY5Njg3OHww&ixlib=rb-4.1.0&q=80&w=1080"
+    image: "/src/images/coding-workflow.jpg"
   }
 ];
 
@@ -379,7 +379,7 @@ export function ResourceDetail({ onBack, resource }: ResourceDetailProps) {
                             <Star className="h-3 w-3 fill-yellow-400 text-yellow-400" />
                             <span className="text-xs">{relatedResource.rating}</span>
                           </div>
-                          <Badge className={getCategoryColor(relatedResource.category)} variant="secondary" className="text-xs">
+                          <Badge className={`${getCategoryColor(relatedResource.category)} text-xs`} variant="secondary">
                             {relatedResource.category}
                           </Badge>
                         </div>

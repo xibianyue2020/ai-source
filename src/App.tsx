@@ -22,7 +22,7 @@ const mockResources = {
       views: 28350,
       tags: ["写作", "GPT-4", "模板"],
       author: "OpenAI官方",
-      image: "https://images.unsplash.com/photo-1738003946582-aabeabf5e009?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBSSUyMGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc1ODY2NzczMnww&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/src/images/ai-technology.jpg",
       featured: true
     },
     {
@@ -34,7 +34,7 @@ const mockResources = {
       views: 16780,
       tags: ["文件管理", "MCP", "批处理"],
       author: "Anthropic团队",
-      image: "https://images.unsplash.com/photo-1753715613388-7e03410b1dce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjBwcm9ncmFtbWluZyUyMHdvcmtmbG93fGVufDF8fHx8MTc1ODY5Njg3OHww&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "/src/images/coding-workflow.jpg"
     }
   ],
   featured: [
@@ -47,7 +47,7 @@ const mockResources = {
       views: 23450,
       tags: ["客服", "Dify", "对话"],
       author: "AI开发者",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwdmlzdWFsaXphdGlvbiUyMGFuYWx5dGljc3xlbnwxfHx8fDE3NTg1ODg1NzN8MA&ixlib=rb-4.1.0&q=80&w=1080",
+      image: "/src/images/data-analytics.jpg",
       featured: true
     },
     {
@@ -59,7 +59,7 @@ const mockResources = {
       views: 14920,
       tags: ["代码审查", "自动化", "CI/CD"],
       author: "DevOps专家",
-      image: "https://images.unsplash.com/photo-1740174459717-3833cb537bca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGRlc2lnbiUyMHRvb2xzfGVufDF8fHx8MTc1ODYzMzgyMHww&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "/src/images/creative-design.jpg"
     }
   ],
   popular: [
@@ -72,7 +72,7 @@ const mockResources = {
       views: 45230,
       tags: ["图像生成", "Midjourney", "DALL-E"],
       author: "创意工作室",
-      image: "https://images.unsplash.com/photo-1738003946582-aabeabf5e009?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxBSSUyMGFydGlmaWNpYWwlMjBpbnRlbGxpZ2VuY2UlMjB0ZWNobm9sb2d5fGVufDF8fHx8MTc1ODY2NzczMnww&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "/src/images/ai-technology.jpg"
     },
     {
       title: "数据分析MCP工具包",
@@ -83,7 +83,7 @@ const mockResources = {
       views: 32150,
       tags: ["数据分析", "Excel", "可视化"],
       author: "数据科学家",
-      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxkYXRhJTIwdmlzdWFsaXphdGlvbiUyMGFuYWx5dGljc3xlbnwxfHx8fDE3NTg1ODg1NzN8MA&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "/src/images/data-analytics.jpg"
     }
   ],
   latest: [
@@ -96,7 +96,7 @@ const mockResources = {
       views: 8760,
       tags: ["多模态", "生成器", "新功能"],
       author: "AI研究员",
-      image: "https://images.unsplash.com/photo-1753715613388-7e03410b1dce?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjb2RpbmclMjBwcm9ncmFtbWluZyUyMHdvcmtmbG93fGVufDF8fHx8MTc1ODY5Njg3OHww&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "/src/images/coding-workflow.jpg"
     },
     {
       title: "智能邮件处理工作流",
@@ -107,7 +107,7 @@ const mockResources = {
       views: 5420,
       tags: ["邮件处理", "自动化", "效率"],
       author: "效率专家",
-      image: "https://images.unsplash.com/photo-1740174459717-3833cb537bca?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjcmVhdGl2ZSUyMGRlc2lnbiUyMHRvb2xzfGVufDF8fHx8MTc1ODYzMzgyMHww&ixlib=rb-4.1.0&q=80&w=1080"
+      image: "/src/images/creative-design.jpg"
     }
   ]
 };
