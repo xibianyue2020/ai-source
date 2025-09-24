@@ -1,88 +1,90 @@
-import { Search, Bell, User, TreePine } from 'lucide-react';
-import { Button } from './ui/button';
-import { Input } from './ui/input';
-import { Badge } from './ui/badge';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from './ui/dropdown-menu';
+import { Search, Bell, User, TreePine } from "lucide-react";
+import { Button } from "./ui/button";
+import { Input } from "./ui/input";
+import { Avatar, AvatarFallback, AvatarImage } from "./ui/avatar";
+import { Badge } from "./ui/badge";
 
 interface NavigationProps {
-  activeTab: string;
-  onTabChange: (tab: string) => void;
+  onNavigate?: (view: "home" | "branches" | "profile" | "community" | "incentives") => void;
 }
 
-export function Navigation({ activeTab, onTabChange }: NavigationProps) {
-  const navItems = [
-    { id: 'home', label: '资源中心' },
-    { id: 'nodes', label: '分节点' },
-    { id: 'community', label: '社区' },
-    { id: 'incentive', label: '激励' },
-    { id: 'profile', label: '我的' },
-  ];
-
+export function Navigation({ onNavigate }: NavigationProps) {
   return (
-    <nav className="border-b bg-white px-6 py-4">
-      <div className="flex items-center justify-between max-w-7xl mx-auto">
-        {/* Logo */}
-        <div className="flex items-center gap-2">
-          <TreePine className="h-8 w-8 text-primary" />
-          <span className="text-xl font-medium">资源市场</span>
-        </div>
-
-        {/* Navigation Links */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <button
-              key={item.id}
-              onClick={() => onTabChange(item.id)}
-              className={`px-3 py-2 rounded-md transition-colors ${
-                activeTab === item.id
-                  ? 'bg-primary text-primary-foreground'
-                  : 'text-foreground hover:bg-accent hover:text-accent-foreground'
-              }`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </div>
-
-        {/* Right Section */}
-        <div className="flex items-center gap-4">
-          <div className="relative hidden sm:block">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="搜索资源..."
-              className="pl-10 w-64"
-            />
+    <nav className="border-b bg-white/95 backdrop-blur supports-[backdrop-filter]:bg-white/60 sticky top-0 z-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex justify-between items-center h-16">
+          {/* Logo */}
+          <div className="flex items-center space-x-2">
+            <TreePine className="h-8 w-8 text-primary" />
+            <span className="text-xl font-semibold">AI 生态工具</span>
           </div>
-          
-          <Button variant="ghost" size="icon" className="relative">
-            <Bell className="h-5 w-5" />
-            <Badge variant="destructive" className="absolute -top-1 -right-1 h-5 w-5 p-0 flex items-center justify-center text-xs">
-              3
-            </Badge>
-          </Button>
 
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="relative h-10 w-10 rounded-full">
-                <Avatar className="h-10 w-10">
-                  <AvatarImage src="/placeholder.svg" alt="用户头像" />
-                  <AvatarFallback>用户</AvatarFallback>
-                </Avatar>
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent className="w-56" align="end" forceMount>
-              <DropdownMenuItem onClick={() => onTabChange('profile')}>
-                个人中心
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                设置
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                退出登录
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          {/* Navigation Links */}
+          <div className="hidden md:flex items-center space-x-8">
+            <Button 
+              variant="ghost" 
+              className="text-foreground hover:text-primary"
+              onClick={() => onNavigate?.("home")}
+            >
+              资源中心
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="text-foreground hover:text-primary"
+              onClick={() => onNavigate?.("branches")}
+            >
+              分节点
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="text-foreground hover:text-primary"
+              onClick={() => onNavigate?.("community")}
+            >
+              社区
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="text-foreground hover:text-primary"
+              onClick={() => onNavigate?.("incentives")}
+            >
+              激励
+            </Button>
+            <Button 
+              variant="ghost" 
+              className="text-foreground hover:text-primary"
+              onClick={() => onNavigate?.("profile")}
+            >
+              我的
+            </Button>
+          </div>
+
+          {/* Right Section */}
+          <div className="flex items-center space-x-4">
+            {/* Search */}
+            <div className="relative hidden sm:block">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
+              <Input 
+                placeholder="搜索工具和提示词..." 
+                className="pl-10 w-64"
+              />
+            </div>
+
+            {/* Notifications */}
+            <Button variant="ghost" size="icon" className="relative">
+              <Bell className="h-5 w-5" />
+              <Badge className="absolute -top-1 -right-1 h-5 w-5 flex items-center justify-center p-0 text-xs">
+                3
+              </Badge>
+            </Button>
+
+            {/* Avatar */}
+            <Avatar>
+              <AvatarImage src="/placeholder-avatar.jpg" />
+              <AvatarFallback>
+                <User className="h-4 w-4" />
+              </AvatarFallback>
+            </Avatar>
+          </div>
         </div>
       </div>
     </nav>

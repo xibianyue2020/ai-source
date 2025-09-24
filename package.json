@@ -1,6 +1,6 @@
 
   {
-      "name": "Modern Resource Management Dashboard",
+      "name": "Resource Management Dashboard",
       "version": "0.1.0",
       "private": true,
       "dependencies": {
