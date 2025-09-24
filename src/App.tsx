@@ -6,7 +6,9 @@ import { ResourceCard } from "./components/resource-card";
 import { ResourceDetail } from "./components/resource-detail";
 import { BranchNodes } from "./components/branch-nodes";
 import { UserProfile } from "./components/user-profile";
+import { IncentivePage } from "./components/incentive-page";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./components/ui/tabs";
+import { Button } from "./components/ui/button";
 
 // Mock data for resources
 const mockResources = {
@@ -206,15 +208,7 @@ export default function App() {
     return (
       <div className="min-h-screen bg-background">
         <Navigation onNavigate={handleNavigationClick} />
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="text-center py-16">
-            <h1 className="text-3xl font-bold mb-4">激励系统</h1>
-            <p className="text-muted-foreground mb-6">激励系统正在开发中，敬请期待！</p>
-            <Button onClick={() => setCurrentView("home")}>
-              返回首页
-            </Button>
-          </div>
-        </div>
+        <IncentivePage />
       </div>
     );
   }
