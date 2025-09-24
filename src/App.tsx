@@ -64,7 +64,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-6 py-8">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
             <div>
-              <h3 className="font-medium mb-4">关于生态树</h3>
+              <h3 className="font-medium mb-4">关于资源市场</h3>
               <p className="text-sm text-muted-foreground">
                 构建开发者资源分享生态，让知识传播更高效，让创新更容易。
               </p>
@@ -91,14 +91,14 @@ export default function App() {
               <h3 className="font-medium mb-4">联系我们</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
                 <li>邮箱: contact@ecosys.dev</li>
-                <li>微信群: 生态树开发者</li>
+                <li>微信群: 资源市场开发者</li>
                 <li>GitHub: @ecosys-platform</li>
-                <li>微博: @生态树平台</li>
+                <li>微博: @资源市场平台</li>
               </ul>
             </div>
           </div>
           <div className="border-t mt-8 pt-8 flex items-center justify-between text-sm text-muted-foreground">
-            <p>&copy; 2024 生态树平台. 保留所有权利.</p>
+            <p>&copy; 2024 资源市场平台. 保留所有权利.</p>
             <p>版本 v2.1.4 | 构建 20240115</p>
           </div>
         </div>

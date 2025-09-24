@@ -25,7 +25,7 @@ export function Navigation({ activeTab, onTabChange }: NavigationProps) {
         {/* Logo */}
         <div className="flex items-center gap-2">
           <TreePine className="h-8 w-8 text-primary" />
-          <span className="text-xl font-medium">生态树</span>
+          <span className="text-xl font-medium">资源市场</span>
         </div>
 
         {/* Navigation Links */}
