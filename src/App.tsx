@@ -84,22 +84,20 @@ export default function App() {
                 <li><a href="#" className="hover:text-foreground">讨论区</a></li>
                 <li><a href="#" className="hover:text-foreground">问题反馈</a></li>
                 <li><a href="#" className="hover:text-foreground">功能建议</a></li>
-                <li><a href="#" className="hover:text-foreground">开源贡献</a></li>
+                <li><a href="#" className="hover:text-foreground">资源贡献</a></li>
               </ul>
             </div>
             <div>
               <h3 className="font-medium mb-4">联系我们</h3>
               <ul className="space-y-2 text-sm text-muted-foreground">
-                <li>邮箱: contact@ecosys.dev</li>
-                <li>微信群: 资源市场开发者</li>
-                <li>GitHub: @ecosys-platform</li>
-                <li>微博: @资源市场平台</li>
+                <li>邮箱: contact@njsecnet.com</li>
+                <li>电话: 025-88888888</li>
               </ul>
             </div>
           </div>
           <div className="border-t mt-8 pt-8 flex items-center justify-between text-sm text-muted-foreground">
             <p>&copy; 2024 资源市场平台. 保留所有权利.</p>
-            <p>版本 v2.1.4 | 构建 20240115</p>
+            <p>版本 v2.1.4 | 构建 20250115</p>
           </div>
         </div>
       </footer>

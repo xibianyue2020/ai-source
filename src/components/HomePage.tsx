@@ -7,7 +7,7 @@ import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { ImageWithFallback } from './figma/ImageWithFallback';
 import mcpImage from '../images/MCP.jpg';
 import aiImage from '../images/AI.jpg';
-import biImage from '../images/BI.jpg';
+import biImage from '../images/BI.jpg';  
 
 interface HomePageProps {
   onResourceClick: (id: string) => void;
